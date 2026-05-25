@@ -40,6 +40,8 @@ class CampoMinado {
         int getTamanho();
         int getBombas();
         int getQuadrosDescobertos();
+
+        friend std::ostream& operator<<(std::ostream& os, const CampoMinado& campo);
 };
 
 #endif

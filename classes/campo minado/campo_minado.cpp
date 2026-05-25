@@ -11,8 +11,8 @@ CampoMinado::CampoMinado(int tamanho, double densidade) {
     this->densidade = densidade;
     
     this->campoMinado.assign(this->linhas, std::vector<int>());
-    this->campoRevelado.assign(this->linhas, std::vector<int>());
-    this->campoEstado.assign(this->linhas, std::vector<int>());
+    this->campoRevelado.assign(this->linhas, std::vector<int>(this->colunas, 0));
+    this->campoEstado.assign(this->linhas, std::vector<int>(this->colunas, 0));
 
     this->quadros = this->linhas * this->colunas;
     this->bombas = int(this->quadros * densidade);
@@ -185,4 +185,30 @@ bool CampoMinado::verificarVitoria() {
         this->vitoria = true;
     }
     return this->vitoria;
+}
+
+std::ostream& operator<<(std::ostream& os, const CampoMinado& campo) {
+    for (int i = 0; i < campo.linhas; i++) {
+        for (int j = 0; j < campo.colunas; j++) {
+            if (campo.campoEstado[i][j] == 2) {
+                os << " F ";
+            }
+            else if (campo.campoEstado[i][j] == 3) {
+                os << " X ";
+            }
+            else if (campo.campoEstado[i][j] == 1) {
+                os << " " << campo.campoRevelado[i][j] << " ";
+            }
+            else {
+                os << " # ";
+            }
+
+            if (j != campo.colunas - 1) {
+                os << "|";
+            }
+        }
+        os << "\n";
+    }
+    os << std::endl;
+    return os;
 }
