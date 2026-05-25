@@ -4,7 +4,7 @@
 using namespace std;
 
 // construtor da classe pai coletaveis
-coletaveis::coletaveis(player* ponteiro_interno, float self_lifetime) {
+Coletaveis::Coletaveis(player* ponteiro_interno, double self_lifetime) {
     ponteiro = ponteiro_interno;
     lifetime = self_lifetime;
 
@@ -14,11 +14,11 @@ coletaveis::coletaveis(player* ponteiro_interno, float self_lifetime) {
 }
 
 //destrutor da classe
-coletaveis::~coletaveis() {
+Coletaveis::~Coletaveis() {
 }
 
 // logica do metodo do update se ainda esta ativo
-void coletaveis::update() {
+void Coletaveis::update() {
     if (!ativo) return; //termina o codigo
 
     if (timer > 0) {
@@ -30,29 +30,29 @@ void coletaveis::update() {
 // falta como fazer a questão da posição do player pra ver se o player ta tocando ou n 
 }
 
-bool coletaveis::ta_ativo() const {
+bool Coletaveis::ta_ativo() const {
     return ativo;
 }
 
 //metodos das classes filhas
 
 // construtor da classe vida
-vida::vida(player* ponteiro_interno, float self_lifetime) : coletaveis(ponteiro_interno, self_lifetime) {}// chama o construtor da classe pai antes
+Vida::Vida(player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}// chama o construtor da classe pai antes
 
-void vida::ocorrencia_efeito() {
-//logica pra adicionar vida em algum lugar
+void Vida::ocorrencia_efeito() {
+    //logica pra adicionar vida em algum lugar
 }
 
 //construtor classe tempo
-tempo::tempo(player* ponteiro_interno, float self_lifetime) : coletaveis(ponteiro_interno, self_lifetime) {}
+Tempo::Tempo(player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}
 
-void tempo::ocorrencia_efeito() {
+void Tempo::ocorrencia_efeito() {
     //logica de adicionar mais tempo
 }
 
 //construtor classe flag
-flag::flag(player* ponteiro_interno, float self_lifetime) : coletaveis(ponteiro_interno, self_lifetime) {}
+Flag::Flag(player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}
 
-void flag::ocorrencia_efeito() {
+void Flag::ocorrencia_efeito() {
     //logica adicionar numero das flags
 }
