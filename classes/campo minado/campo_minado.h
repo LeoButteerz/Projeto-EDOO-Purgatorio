@@ -1,5 +1,5 @@
-#ifndef ALGORITMO_H
-#define ALGORITMO_H
+#ifndef CAMPO_MINADO_H
+#define CAMPO_MINADO_H
 #include <iostream>
 #include <vector> //usando para administrar o campo minado 2d como um vetor de vetores
 
@@ -40,4 +40,4 @@ class CampoMinado {
         int getTamanho();
 };
 
-#endif // ALGORITMO_H
+#endif

@@ -1,4 +1,4 @@
-#include "algoritmo.h"
+#include "campo_minado.h"
 //bibliotecas para embaralhar o campo minado
 #include <algorithm>
 #include <random>
