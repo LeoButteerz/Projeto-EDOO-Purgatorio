@@ -28,27 +28,27 @@ class Coletaveis
 };
 
 //classe filha da classe coletavel
-class vida : public Coletaveis{//em relação ao coletavel de vida
+class Vida : public Coletaveis{//em relação ao coletavel de vida
     public:
-        vida(player* ponteiro_interno, double self_lifetime);//construtor da mesma
+        Vida(player* ponteiro_interno, double self_lifetime);//construtor da mesma
 
         void ocorrencia_efeito() override;//metodo que sera sobrescrito em todas as classes filhas
 
 };
 
 //classe filha da classe coletavel
-class tempo : public Coletaveis{//relacionado ao coletavel que da mais tempo
+class Tempo : public Coletaveis{//relacionado ao coletavel que da mais tempo
     public:
-        tempo(player* ponteiro_interno, double self_lifetime);//construtor da mesma
+        Tempo(player* ponteiro_interno, double self_lifetime);//construtor da mesma
 
         void ocorrencia_efeito() override;//metodo que sera sobrescrito em todas as classes filhas
 
 };
 
 //classe filha da classe coletavel
-class flag : public Coletaveis{//coletavel flag
+class Flag : public Coletaveis{//coletavel flag
     public:
-        flag(player* ponteiro_interno, double self_lifetime);//construtor da mesma
+        Flag(player* ponteiro_interno, double self_lifetime);//construtor da mesma
 
         void ocorrencia_efeito() override;//metodo que sera sobrescrito em todas as classes filhas
 
