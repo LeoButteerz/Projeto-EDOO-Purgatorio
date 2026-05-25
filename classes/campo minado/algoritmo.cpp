@@ -9,14 +9,17 @@ CampoMinado::CampoMinado(int tamanho, double densidade) {
     this->linhas = tamanho;
     this->colunas = tamanho;
     this->densidade = densidade;
+    
+    this->campoMinado.assign(this->linhas, std::vector<int>());
+    this->campoRevelado.assign(this->linhas, std::vector<int>());
+    this->campoEstado.assign(this->linhas, std::vector<int>());
+
     this->quadros = this->linhas * this->colunas;
     this->bombas = int(this->quadros * densidade);
     this->quadrosLivres = this->quadros - this->bombas;
     this->quadrosDescobertos = 0;
     this->vitoria = false;
     this->primeiroClique = true;
-    this->campoMinado.assign(this->linhas, std::vector<int>());
-    this->campoRevelado.assign(this->linhas, std::vector<int>());
 }
 
 CampoMinado::~CampoMinado() {
@@ -84,4 +87,94 @@ void CampoMinado::contarBombas() {
             this->contarBombasVizinhas(i, j);
         }
     }
+}
+
+void CampoMinado::revelarQuadro(int linha, int coluna, bool quadroInicial) {
+    //só revela o quadro se não tiver sido marcado com uma bandeira
+    if (!(this->campoEstado[linha][coluna] == 2 && quadroInicial)) {
+        
+        //coordenadas dos quadros vizinhos
+        std::vector<std::vector<int>> vizinhos = {
+            {linha-1, coluna-1}, {linha-1, coluna}, {linha-1, coluna+1},
+            {linha, coluna-1}, {linha, coluna+1},
+            {linha+1, coluna-1}, {linha+1, coluna}, {linha+1, coluna+1}
+        };
+
+        //impossível errar na primeira jogada
+        if (this->primeiroClique) {
+            
+            this->primeiroClique = false;
+
+            //o primeiro clique foi em uma bomba
+            if (this->campoMinado[linha][coluna] == 1) {
+                this->campoMinado[linha][coluna] = 0;
+                this->bombas--;
+                this->quadrosLivres++;
+            }
+
+            this->quadrosDescobertos++;
+            this->campoEstado[linha][coluna] = 1;
+            this->contarBombas();
+            
+            //essa próxima parte faz o mesmo processo de checar os vizinhos para revelar os quadros
+            for (int k=0; k<8; k++) {
+                int vizinhoLinha = vizinhos[k][0];
+                int vizinhoColuna = vizinhos[k][1];
+
+                //esse if checa se o quadro existe dentro da matriz/campo minado
+                if (this->linhas > vizinhoLinha && vizinhoLinha >= 0 && this->colunas > vizinhoColuna && vizinhoColuna >= 0) {
+                    //apenas revela o quadro se ele não tiver sido revelado e se o quadro atual nn tiver nenhum contador de bombas
+                    if (this->campoEstado[vizinhoLinha][vizinhoColuna] != 1 && this->campoRevelado[linha][coluna] == 0) {
+                        this->revelarQuadro(vizinhoLinha, vizinhoColuna, false);
+                    }
+                }
+            }
+        }
+
+        //bomba acertada
+        else if (this->campoMinado[linha][coluna] == 1 && this->campoEstado[linha][coluna] != 3) {
+            this->campoEstado[linha][coluna] = 3;
+        }
+
+        //revelou quadro normal
+        else if (this->campoMinado[linha][coluna] != 1 && this->campoEstado[linha][coluna] != 1 && this->campoEstado[linha][coluna] != 3) {
+            this->quadrosDescobertos++;
+            this->campoEstado[linha][coluna] = 1;
+
+            //essa próxima parte faz o mesmo processo de checar os vizinhos para revelar os quadros
+            for (int k=0; k<8; k++) {
+                int vizinhoLinha = vizinhos[k][0];
+                int vizinhoColuna = vizinhos[k][1];
+
+                //esse if checa se o quadro existe dentro da matriz/campo minado
+                if (this->linhas > vizinhoLinha && vizinhoLinha >= 0 && this->colunas > vizinhoColuna && vizinhoColuna >= 0) {
+                    //apenas revela o quadro se ele não tiver sido revelado e se o quadro atual nn tiver nenhum contador de bombas
+                    if (this->campoEstado[vizinhoLinha][vizinhoColuna] != 1 && this->campoRevelado[linha][coluna] == 0) {
+                        this->revelarQuadro(vizinhoLinha, vizinhoColuna, false);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void CampoMinado::marcarBandeira(int linha, int coluna) {
+    //só marca a bandeira se o quadro não tiver sido revelado
+    if (this->campoEstado[linha][coluna] != 1) {
+        //se o quadro já tiver uma bandeira, remove a bandeira
+        if (this->campoEstado[linha][coluna] == 2) {
+            this->campoEstado[linha][coluna] = 0;
+        }
+        else if (this->campoEstado[linha][coluna] == 0) {
+            this->campoEstado[linha][coluna] = 2;
+        }
+    }
+}
+
+bool CampoMinado::verificarVitoria() {
+    //o jogador vence se revelar todos os quadros livres
+    if (this->quadrosDescobertos == this->quadrosLivres) {
+        this->vitoria = true;
+    }
+    return this->vitoria;
 }

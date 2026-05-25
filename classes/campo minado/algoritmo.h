@@ -10,8 +10,11 @@ class CampoMinado {
         int linhas;
         int colunas;
         double densidade;
+        
         std::vector<std::vector<int>> campoMinado;
         std::vector<std::vector<int>> campoRevelado;
+        std::vector<std::vector<int>> campoEstado; // 0 -> não revelado, 1 -> revelado, 2 -> marcado, 3 -> bomba acertada
+        
         int quadros;
         int bombas;
         int quadrosLivres;
@@ -26,13 +29,14 @@ class CampoMinado {
 
         //funções para gerar e administrar o campo minado
         void gerarCampoMinado();
-        void imprimirCampoMinado();
+        //void imprimirCampoMinado();
         void contarBombasVizinhas(int linha, int coluna);
         void contarBombas();
 
         void revelarQuadro(int linha, int coluna, bool quadroInicial=true);
-        void revelarQuadrosVizinhos(int linha, int coluna);
+        void marcarBandeira(int linha, int coluna);
         bool verificarVitoria();
+        
         int getTamanho();
 };
 
