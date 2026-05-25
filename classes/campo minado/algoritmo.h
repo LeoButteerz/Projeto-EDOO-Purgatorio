@@ -11,6 +11,7 @@ class CampoMinado {
         int colunas;
         double densidade;
         std::vector<std::vector<int>> campoMinado;
+        std::vector<std::vector<int>> campoRevelado;
         int quadros;
         int bombas;
         int quadrosLivres;
@@ -27,7 +28,7 @@ class CampoMinado {
         void gerarCampoMinado();
         void imprimirCampoMinado();
         void contarBombasVizinhas(int linha, int coluna);
-        void contarBombas(const CampoMinado& campo);
+        void contarBombas();
 
         void revelarQuadro(int linha, int coluna, bool quadroInicial=true);
         void revelarQuadrosVizinhos(int linha, int coluna);
