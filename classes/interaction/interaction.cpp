@@ -1,5 +1,4 @@
 #include "interaction.hpp"
-// #include <iostream>
 
 //definicao construtor da classe Interactions
 Interactions::Interactions(bool left_click, bool left_press, bool right_click, bool right_press)
@@ -50,10 +49,3 @@ std::array<int, 2> position(array<int, 2> mousePointer[2])  // mPosPointer seria
 }
 
 
-
-
-
-void dig() //funcao que cava um ladrilho
-{
-
-}
