@@ -31,6 +31,14 @@ int CampoMinado::getTamanho() {
     return this->tamanho;
 }
 
+int CampoMinado::getBombas() {
+    return this->bombas;
+}
+
+int CampoMinado::getQuadrosDescobertos() {
+    return this->quadrosDescobertos;
+}
+
 void CampoMinado::gerarCampoMinado() {
     //cria um vetor unidimensional que lista os quadros livres e as bombas
     // 0 -> quadro livre || 1 -> bomba

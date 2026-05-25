@@ -38,6 +38,8 @@ class CampoMinado {
         bool verificarVitoria();
         
         int getTamanho();
+        int getBombas();
+        int getQuadrosDescobertos();
 };
 
 #endif
