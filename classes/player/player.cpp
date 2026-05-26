@@ -11,7 +11,7 @@ Player::Player(){
     bandeiras = max_bandeiras;
     pontos = 0;
     multiplicador = 1;
-    acoes_restantes = 10;
+    acoes_restantes = 30;
 }
 
 // construtor com parametros para definir vida e bandeiras iniciais
@@ -25,6 +25,7 @@ Player::Player(int vidas_iniciais, int bandeiras_iniciais, int acoes_restantes_i
     bandeiras = bandeiras_iniciais;
     pontos = 0;
     multiplicador = 1;
+    acoes_restantes = acoes_restantes_iniciais;
 }
 
 // destrutor vazio, pois a classe nao usa memoria dinamica

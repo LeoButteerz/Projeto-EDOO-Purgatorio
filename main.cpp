@@ -33,11 +33,11 @@ int main(){
     //gera os objetos que serão utilizados
     Player* player = new Player();
     CampoMinado* campo = new CampoMinado(tamanho, densidade, player);
-    Coletaveis* coletavelVida = new Vida(player, 4, 9, 1);
+    Coletaveis* coletavelVida = new Vida(player, 15, 9, 1);
     campo->adicionarColetavelVida(coletavelVida);
-    Coletaveis* coletavelTempo = new Tempo(player, 4, 2, 5);
+    Coletaveis* coletavelTempo = new Tempo(player, 10, 2, 5);
     campo->adicionarColetavelTempo(coletavelTempo);
-    Coletaveis* coletavelFlag = new Flag(player, 4, 7, 6);
+    Coletaveis* coletavelFlag = new Flag(player, 5, 7, 6);
     campo->adicionarColetavelFlag(coletavelFlag);
 
     campo->gerarCampoMinado();
