@@ -1,8 +1,6 @@
 #ifndef COLETAVEIS_HPP
 #define COLETAVEIS_HPP
-
 #include <iostream>
-using namespace std;
 
 class Player; //necessario já que será necessario para comparação
 

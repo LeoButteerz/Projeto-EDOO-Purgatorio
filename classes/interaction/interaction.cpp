@@ -57,7 +57,7 @@ void get_mouse_pos()
 
 
 
-void const position(vector<int> mousePointer)  // mousePointer seria vector de tamanho 2 que contem a posicao do mouse
+void const position(std::vector<int> mousePointer)  // mousePointer seria vector de tamanho 2 que contem a posicao do mouse
 {   
     get_mouse_pos(); //atualiza posicao do mouse
 
@@ -70,7 +70,7 @@ void const position(vector<int> mousePointer)  // mousePointer seria vector de t
     }
     
 
-    catch(string error_msg) //fallback; caso por algum motivo a posição não esteja no formato válido, defaulta pra {0,0}
+    catch(std::string error_msg) //fallback; caso por algum motivo a posição não esteja no formato válido, defaulta pra {0,0}
     {
         if(error_msg == "INVALID_POSITION"){ // confere se foi o erro de valores inválidos pra mousePointer
 

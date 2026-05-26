@@ -11,10 +11,11 @@ Player::Player(){
     bandeiras = max_bandeiras;
     pontos = 0;
     multiplicador = 1;
+    acoes_restantes = 10;
 }
 
 // construtor com parametros para definir vida e bandeiras iniciais
-Player::Player(int vidas_iniciais, int bandeiras_iniciais){
+Player::Player(int vidas_iniciais, int bandeiras_iniciais, int acoes_restantes_iniciais){
     x = 0;
     y = 0;
 
@@ -136,4 +137,30 @@ int Player::getPontos() const{
 // retorna o multiplicador atual
 int Player::getMultiplicador() const{
     return multiplicador;
+}
+
+void Player::setAcoesRestantes(int valor)
+{
+    acoes_restantes += valor;
+}
+
+int Player::getAcoesRestantes() const
+{
+    return acoes_restantes;
+}
+
+void Player::usarAcao()
+{
+    if (acoes_restantes > 0) {
+        acoes_restantes--;
+    }
+}
+
+std::ostream& operator<<(std::ostream& os, const Player& player)
+{
+    os << "Vidas: " << player.vidas << " || Bandeiras: " << player.bandeiras << " || Pontos: "
+       << player.pontos << " || Multiplicador: " << player.multiplicador
+       << "x || Açoes restante: " << player.acoes_restantes;
+
+    return os;
 }

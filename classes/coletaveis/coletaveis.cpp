@@ -1,7 +1,6 @@
 #include "coletaveis.hpp"
-#include "classes\player\player.hpp"
+#include "../player/player.hpp"
 #include <iostream>
-using namespace std;
 
 // construtor da classe pai coletaveis
 Coletaveis::Coletaveis(Player* ponteiro_interno, double self_lifetime) {
@@ -47,7 +46,7 @@ void Vida::ocorrencia_efeito(const int qnt) {
 Tempo::Tempo(Player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}
 
 void Tempo::ocorrencia_efeito(const int qnt) {
-    this->lifetime += qnt;
+    this->ponteiro->setAcoesRestantes(qnt);
 }
 
 //construtor classe flag

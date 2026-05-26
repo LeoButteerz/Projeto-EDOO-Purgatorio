@@ -1,5 +1,8 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
+#include <iostream>
+
+class Coletaveis; //necessario para a classe coletaveis
 
 class Player
 {
@@ -13,10 +16,11 @@ class Player
         int max_bandeiras;
         int pontos;
         int multiplicador;
+        int acoes_restantes;
 
     public:
         Player();
-        Player(int vidas_iniciais, int bandeiras_iniciais);
+        Player(int vidas_iniciais, int bandeiras_iniciais, int acoes_restantes_iniciais);
         ~Player();
 
         // posicao do player na tela ou no tabuleiro
@@ -37,12 +41,19 @@ class Player
         int getBandeiras() const;
         int getMaxBandeiras() const;
 
+        // controle das ações restantes
+        void setAcoesRestantes(int valor);
+        int getAcoesRestantes() const;
+        void usarAcao();
+
         // pontuacao do jogador
         void somarPontos(int valor);
         void aumentarMultiplicador();
         void resetarMultiplicador();
         int getPontos() const;
         int getMultiplicador() const;
+
+        friend std::ostream& operator<<(std::ostream& os, const Player& player);
 };
 
 #endif
