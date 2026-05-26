@@ -160,7 +160,7 @@ std::ostream& operator<<(std::ostream& os, const Player& player)
 {
     os << "Vidas: " << player.vidas << " || Bandeiras: " << player.bandeiras << " || Pontos: "
        << player.pontos << " || Multiplicador: " << player.multiplicador
-       << "x || Açoes restante: " << player.acoes_restantes;
+       << "x || Acoes restante: " << player.acoes_restantes;
 
     return os;
 }

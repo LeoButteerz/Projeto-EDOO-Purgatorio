@@ -4,11 +4,12 @@
 #include <random>
 
 //definição do construtor
-CampoMinado::CampoMinado(int tamanho, double densidade) {
+CampoMinado::CampoMinado(int tamanho, double densidade, Player* player) {
     this->tamanho = tamanho;
     this->linhas = tamanho;
     this->colunas = tamanho;
     this->densidade = densidade;
+    this->player = player;
     
     this->campoMinado.assign(this->linhas, std::vector<int>());
     this->campoRevelado.assign(this->linhas, std::vector<int>(this->colunas, 0));
@@ -176,6 +177,8 @@ void CampoMinado::marcarBandeira(int linha, int coluna) {
         else if (this->campoEstado[linha][coluna] == 0) {
             this->campoEstado[linha][coluna] = 2;
         }
+        this->player->usarBandeira(1);
+        this->player->somarPontos(10);
     }
 }
 
@@ -190,7 +193,10 @@ bool CampoMinado::verificarVitoria() {
 std::ostream& operator<<(std::ostream& os, const CampoMinado& campo) {
     for (int i = 0; i < campo.linhas; i++) {
         for (int j = 0; j < campo.colunas; j++) {
-            if (campo.campoEstado[i][j] == 2) {
+            if (campo.player->getX() == i && campo.player->getY() == j) {
+                os << " P ";
+            }
+            else if (campo.campoEstado[i][j] == 2) {
                 os << " F ";
             }
             else if (campo.campoEstado[i][j] == 3) {

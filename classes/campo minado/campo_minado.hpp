@@ -1,7 +1,10 @@
 #ifndef CAMPO_MINADO_HPP
 #define CAMPO_MINADO_HPP
+#include "../player/player.hpp"
 #include <iostream>
 #include <vector> //usando para administrar o campo minado 2d como um vetor de vetores
+
+class Player;
 
 class CampoMinado {
     private:
@@ -22,9 +25,11 @@ class CampoMinado {
         bool vitoria;
         bool primeiroClique;
 
+        Player* player;
+
     public:
         //construtor e destrutor
-        CampoMinado(int tamanho, double densidade);
+        CampoMinado(int tamanho, double densidade, Player* player);
         virtual ~CampoMinado();
 
         //funções para gerar e administrar o campo minado

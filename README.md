@@ -11,6 +11,7 @@ Refazendo o jogo Purgatório (original em: https://github.com/Elanosinho/projeto
 ```./main```
 
 # Como jogar
+Primeiro de tudo, monte o tamanho do lado do seu campo minado (inteiro positivo) e a desidade de bombas no campo (número entre 0 e 1). Depois disso, responda com um caractére a ação que deseja realizar e coloque as cordenadas da sua ação (linha coluna). Se atente a suas ações e a quantidade de bandeiras que tem :)
 
 # Divisão de tarefas
 ```txt
@@ -23,13 +24,12 @@ Integrantes:
 
 # Organização do projeto
 ```txt
-LeoButteerz/Projeto-EDOO-Purgatorio/
+Projeto-EDOO-Purgatorio/
 ├── main.cpp
 ├── README.md
 ├── CONTRIBUTING.MD
 ├── .gitignore
 └── classes/
-    ├── preview.md              # Documentação da arquitetura
     ├── player/
     │   ├── player.hpp
     │   └── player.cpp
