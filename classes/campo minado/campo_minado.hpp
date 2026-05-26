@@ -53,9 +53,9 @@ class CampoMinado {
         int getQuadrosDescobertos();
 
         friend std::ostream& operator<<(std::ostream& os, const CampoMinado& campo);
-        void adicionarColetavelVida(Coletaveis* coletavel) {};
-        void adicionarColetavelTempo(Coletaveis* coletavel) {};
-        void adicionarColetavelFlag(Coletaveis* coletavel) {};
+        void adicionarColetavelVida(Coletaveis* coletavel);
+        void adicionarColetavelTempo(Coletaveis* coletavel);
+        void adicionarColetavelFlag(Coletaveis* coletavel);
 };
 
 #endif
