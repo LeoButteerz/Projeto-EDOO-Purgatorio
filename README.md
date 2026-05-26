@@ -9,3 +9,9 @@ Refazendo o jogo Purgatório (original em: https://github.com/Elanosinho/projeto
 **Compilação:**
 ```g++ main.cpp -o main```
 ```./main```
+
+# Como jogar
+
+# Divisão de tarefas
+
+# Organização do projeto
