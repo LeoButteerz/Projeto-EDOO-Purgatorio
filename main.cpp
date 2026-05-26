@@ -47,6 +47,35 @@ int main(){
     //loop de jogo
     while (!campo->verificarVitoria() && player->estaVivo() && player->getAcoesRestantes() > 0) {
 
+        cout << "Digite sua acao: revelar (r), marcar bandeira (f) ou mover (m): ";
+        char acao;
+        cin >> acao;
+        player->usarAcao();
+        int linha, coluna;
+
+        //faz ações diferentes dependendo da escolha do jogador
+        if (acao == 'f') {
+            cout << "Digite a linha e a coluna para marcar/desmarcar a bandeira (linha coluna): ";
+            cin >> linha >> coluna;
+            
+            campo->marcarBandeira(linha, coluna);
+        }
+        else if (acao == 'm') {
+            cout << "Digite a linha e a coluna para mover o player (linha coluna): ";
+            cin >> linha >> coluna;
+
+            player->setPosicao(linha, coluna);
+        }
+        else if (acao == 'r') {
+            cout << "Digite a linha e a coluna para revelar (linha coluna): ";
+            cin >> linha >> coluna;
+            
+            campo->revelarQuadro(linha, coluna);
+        }
+        else {
+            cout << "Acao invalida. Tente novamente." << endl;
+        }
+
         //checagem com os coletáveis (para o jogador coletar)
         if (coletavelVida->ta_ativo()){
             if (player->getX() == coletavelVida->getPosicaoX() && player->getY() == coletavelVida->getPosicaoY()) {
@@ -77,39 +106,6 @@ int main(){
             else {
                 coletavelFlag->update();
             }
-        }
-
-        cout << "Digite sua acao: revelar (r), marcar bandeira (f) ou mover (m): ";
-        char acao;
-        cin >> acao;
-        player->usarAcao();
-        int linha, coluna;
-
-        //faz ações diferentes dependendo da escolha do jogador
-        if (acao == 'f') {
-            cout << "Digite a linha e a coluna para marcar/desmarcar a bandeira (linha coluna): ";
-            cin >> linha >> coluna;
-            
-            campo->marcarBandeira(linha, coluna);
-            cout << *player << endl;
-            cout << *campo << endl;
-        }
-        else if (acao == 'm') {
-            cout << "Digite a linha e a coluna para mover o player (linha coluna): ";
-            cin >> linha >> coluna;
-
-            player->setPosicao(linha, coluna);
-        }
-        else if (acao == 'r') {
-            cout << "Digite a linha e a coluna para revelar (linha coluna): ";
-            cin >> linha >> coluna;
-            
-            campo->revelarQuadro(linha, coluna);
-            cout << *player << endl;
-            cout << *campo << endl;
-        }
-        else {
-            cout << "Acao invalida. Tente novamente." << endl;
         }
 
         cout << *player << endl;

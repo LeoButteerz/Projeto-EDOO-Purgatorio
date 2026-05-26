@@ -206,7 +206,7 @@ std::ostream& operator<<(std::ostream& os, const CampoMinado& campo) {
                 os << " % ";
             }
             else if (campo.coletavelFlag != nullptr && campo.coletavelFlag->ta_ativo() && campo.coletavelFlag->getPosicaoX() == i && campo.coletavelFlag->getPosicaoY() == j) {
-                os << " !! ";
+                os << " ! ";
             }
             else if (campo.campoEstado[i][j] == 2) {
                 os << " F ";
