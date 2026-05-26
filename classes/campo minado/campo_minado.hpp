@@ -1,10 +1,13 @@
 #ifndef CAMPO_MINADO_HPP
 #define CAMPO_MINADO_HPP
 #include "../player/player.hpp"
+#include "../coletaveis/coletaveis.hpp"
 #include <iostream>
 #include <vector> //usando para administrar o campo minado 2d como um vetor de vetores
 
 class Player;
+
+class Coletaveis;
 
 class CampoMinado {
     private:
@@ -26,6 +29,9 @@ class CampoMinado {
         bool primeiroClique;
 
         Player* player;
+        Coletaveis* coletavelVida;
+        Coletaveis* coletavelTempo;
+        Coletaveis* coletavelFlag;
 
     public:
         //construtor e destrutor
@@ -47,6 +53,9 @@ class CampoMinado {
         int getQuadrosDescobertos();
 
         friend std::ostream& operator<<(std::ostream& os, const CampoMinado& campo);
+        void adicionarColetavelVida(Coletaveis* coletavel) {};
+        void adicionarColetavelTempo(Coletaveis* coletavel) {};
+        void adicionarColetavelFlag(Coletaveis* coletavel) {};
 };
 
 #endif

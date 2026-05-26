@@ -7,11 +7,19 @@ Refazendo o jogo Purgatório (original em: https://github.com/Elanosinho/projeto
 - Compilador g++ com suporte a C++17
 
 **Compilação:**
-```g++ main.cpp -o main```
-```./main```
+```bash
+g++ main.cpp -o main
+./main
+```
 
 # Como jogar
 Primeiro de tudo, monte o tamanho do lado do seu campo minado (inteiro positivo) e a desidade de bombas no campo (número entre 0 e 1). Depois disso, responda com um caractére a ação que deseja realizar e coloque as cordenadas da sua ação (linha coluna). Se atente a suas ações e a quantidade de bandeiras que tem :)
+Coletáveis:
+```txt
++ -> vida
+% -> ações
+!! -> bandeira
+```
 
 # Divisão de tarefas
 ```txt

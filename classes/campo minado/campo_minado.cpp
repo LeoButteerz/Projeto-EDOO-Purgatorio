@@ -143,6 +143,9 @@ void CampoMinado::revelarQuadro(int linha, int coluna, bool quadroInicial) {
         //bomba acertada
         else if (this->campoMinado[linha][coluna] == 1 && this->campoEstado[linha][coluna] != 3) {
             this->campoEstado[linha][coluna] = 3;
+            this->player->receberDano(1);
+            this->player->resetarMultiplicador();
+            this->player->somarPontos(-30);
         }
 
         //revelou quadro normal
@@ -196,6 +199,15 @@ std::ostream& operator<<(std::ostream& os, const CampoMinado& campo) {
             if (campo.player->getX() == i && campo.player->getY() == j) {
                 os << " P ";
             }
+            else if (campo.coletavelVida != nullptr && campo.coletavelVida->ta_ativo() && campo.coletavelVida->getPosicaoX() == i && campo.coletavelVida->getPosicaoY() == j) {
+                os << " + ";
+            }
+            else if (campo.coletavelTempo != nullptr && campo.coletavelTempo->ta_ativo() && campo.coletavelTempo->getPosicaoX() == i && campo.coletavelTempo->getPosicaoY() == j) {
+                os << " % ";
+            }
+            else if (campo.coletavelFlag != nullptr && campo.coletavelFlag->ta_ativo() && campo.coletavelFlag->getPosicaoX() == i && campo.coletavelFlag->getPosicaoY() == j) {
+                os << " !! ";
+            }
             else if (campo.campoEstado[i][j] == 2) {
                 os << " F ";
             }
@@ -217,4 +229,16 @@ std::ostream& operator<<(std::ostream& os, const CampoMinado& campo) {
     }
     os << std::endl;
     return os;
+}
+
+void CampoMinado::adicionarColetavelVida(Coletaveis* coletavel) {
+    this->coletavelVida = coletavel;
+}
+
+void CampoMinado::adicionarColetavelTempo(Coletaveis* coletavel) {
+    this->coletavelTempo = coletavel;
+}
+
+void CampoMinado::adicionarColetavelFlag(Coletaveis* coletavel) {
+    this->coletavelFlag = coletavel;
 }
