@@ -15,7 +15,7 @@ using namespace std;
 
             vector<int> static mpos; // guarda a posição do mouse. como precisaríamos disso a todo momento no jogo completo, esse vetor é static
 
-            void const position(int& pointer); // função que obtém a posição do mouse atual
+            void const position(); // função que obtém a posição do mouse atual
 
         public:
             Interactions(bool left_click, bool left_press, bool right_click, bool right_press); // constructor de Interactions
