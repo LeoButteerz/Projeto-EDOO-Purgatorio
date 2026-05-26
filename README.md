@@ -13,13 +13,16 @@ Refazendo o jogo Purgatório (original em: https://github.com/Elanosinho/projeto
 # Como jogar
 
 # Divisão de tarefas
+```txt
 Integrantes:
   Arthur Araujo : Implementação da Classe Coletaveis
   João Pedro : Implementação da Classe Player
   Leon Gonçalves : Implementação do Campo Minado e a Simulação
   Marx Andrey : Implementação da Classe Interação
+```
 
 # Organização do projeto
+```txt
 LeoButteerz/Projeto-EDOO-Purgatorio/
 ├── main.cpp
 ├── README.md
