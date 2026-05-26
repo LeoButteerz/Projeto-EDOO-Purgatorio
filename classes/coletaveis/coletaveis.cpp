@@ -1,10 +1,10 @@
 #include "coletaveis.hpp"
-#include "player.hpp"
+#include "classes\player\player.hpp"
 #include <iostream>
 using namespace std;
 
 // construtor da classe pai coletaveis
-Coletaveis::Coletaveis(player* ponteiro_interno, double self_lifetime) {
+Coletaveis::Coletaveis(Player* ponteiro_interno, double self_lifetime) {
     ponteiro = ponteiro_interno;
     lifetime = self_lifetime;
 
@@ -37,22 +37,22 @@ bool Coletaveis::ta_ativo() const {
 //metodos das classes filhas
 
 // construtor da classe vida
-Vida::Vida(player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}// chama o construtor da classe pai antes
+Vida::Vida(Player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}// chama o construtor da classe pai antes
 
-void Vida::ocorrencia_efeito() {
-    //logica pra adicionar vida em algum lugar
+void Vida::ocorrencia_efeito(const int qnt) {
+    this->ponteiro->curar(qnt);
 }
 
 //construtor classe tempo
-Tempo::Tempo(player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}
+Tempo::Tempo(Player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}
 
-void Tempo::ocorrencia_efeito() {
-    //logica de adicionar mais tempo
+void Tempo::ocorrencia_efeito(const int qnt) {
+    this->lifetime += qnt;
 }
 
 //construtor classe flag
-Flag::Flag(player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}
+Flag::Flag(Player* ponteiro_interno, double self_lifetime) : Coletaveis(ponteiro_interno, self_lifetime) {}
 
-void Flag::ocorrencia_efeito() {
-    //logica adicionar numero das flags
+void Flag::ocorrencia_efeito(const int qnt) {
+    this->ponteiro->ganharBandeira(qnt);
 }

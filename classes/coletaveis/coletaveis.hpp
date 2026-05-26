@@ -1,10 +1,10 @@
-#ifndef coletaveis_hpp
-#define coletaveis_hpp
+#ifndef COLETAVEIS_HPP
+#define COLETAVEIS_HPP
 
 #include <iostream>
 using namespace std;
 
-class player; //necessario já que será necessario para comparação
+class Player; //necessario já que será necessario para comparação
 
 class Coletaveis
 {
@@ -12,13 +12,13 @@ class Coletaveis
         double lifetime; //tempo de vida de duração no mapa do coletavel
         double timer; //temporizador interno da classe
         bool ativo; //para saber se o coletavel esta presente no mapa ainda
-        player* ponteiro;
+        Player* ponteiro;
     public:
-        Coletaveis(player* ponteiro_interno, double self_lifetime);//construtor
+        Coletaveis(Player* ponteiro_interno, double self_lifetime);//construtor
         // self para diferenciar de lifetime
         ~Coletaveis();//destrutor
 
-        virtual void ocorrencia_efeito() =0; //defini como um metodo virtual puro
+        virtual void ocorrencia_efeito(const int qnt) =0; //defini como um metodo virtual puro
         // irá obrigatoriamente ser reescrevido nas classes filhas com o efeito respectivo
 
         virtual void update();//chechar se o coletavel ainda estaria no mapa
@@ -30,27 +30,27 @@ class Coletaveis
 //classe filha da classe coletavel
 class Vida : public Coletaveis{//em relação ao coletavel de vida
     public:
-        Vida(player* ponteiro_interno, double self_lifetime);//construtor da mesma
+        Vida(Player* ponteiro_interno, double self_lifetime);//construtor da mesma
 
-        void ocorrencia_efeito() override;//metodo que sera sobrescrito em todas as classes filhas
+        void ocorrencia_efeito(const int qnt) override;//metodo que sera sobrescrito em todas as classes filhas
 
 };
 
 //classe filha da classe coletavel
 class Tempo : public Coletaveis{//relacionado ao coletavel que da mais tempo
     public:
-        Tempo(player* ponteiro_interno, double self_lifetime);//construtor da mesma
+        Tempo(Player* ponteiro_interno, double self_lifetime);//construtor da mesma
 
-        void ocorrencia_efeito() override;//metodo que sera sobrescrito em todas as classes filhas
+        void ocorrencia_efeito(const int qnt) override;//metodo que sera sobrescrito em todas as classes filhas
 
 };
 
 //classe filha da classe coletavel
 class Flag : public Coletaveis{//coletavel flag
     public:
-        Flag(player* ponteiro_interno, double self_lifetime);//construtor da mesma
+        Flag(Player* ponteiro_interno, double self_lifetime);//construtor da mesma
 
-        void ocorrencia_efeito() override;//metodo que sera sobrescrito em todas as classes filhas
+        void ocorrencia_efeito(const int qnt) override;//metodo que sera sobrescrito em todas as classes filhas
 
 };
 #endif

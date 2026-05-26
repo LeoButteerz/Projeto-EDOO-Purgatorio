@@ -1,5 +1,5 @@
-#ifndef CAMPO_MINADO_H
-#define CAMPO_MINADO_H
+#ifndef CAMPO_MINADO_HPP
+#define CAMPO_MINADO_HPP
 #include <iostream>
 #include <vector> //usando para administrar o campo minado 2d como um vetor de vetores
 

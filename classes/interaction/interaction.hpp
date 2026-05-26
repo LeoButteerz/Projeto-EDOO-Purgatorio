@@ -1,5 +1,5 @@
-#ifndef _INTERACTION_H_
-#define _INTERACTION_H_
+#ifndef INTERACTION_HPP
+#define INTERACTION_HPP
 
 #include <array>
 

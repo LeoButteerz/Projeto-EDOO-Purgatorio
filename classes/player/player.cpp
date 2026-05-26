@@ -1,9 +1,8 @@
 #include "player.hpp"
-
 #include <cmath>
 
 // construtor padrao, deixa o player em um estado inicial jogavel
-player::player()
+Player::Player()
 {
     x = 0;
     y = 0;
@@ -28,7 +27,7 @@ player::player()
 }
 
 // construtor com parametros, usado caso o jogo queira definir valores diferentes
-player::player(int vidas_iniciais, int bandeiras_iniciais,
+Player::Player(int vidas_iniciais, int bandeiras_iniciais,
                double velocidade_max, double acc,
                double dampen, double cdamp)
 {
@@ -54,12 +53,12 @@ player::player(int vidas_iniciais, int bandeiras_iniciais,
     machucado = false;
 }
 
-player::~player()
+Player::~Player()
 {
 }
 
 // impede que a velocidade passe do limite definido para o player
-double player::limitar_velocidade(double velocidade) const
+double Player::limitarVelocidade(double velocidade) const
 {
     if (velocidade > velocidade_maxima) {
         return velocidade_maxima;
@@ -73,7 +72,7 @@ double player::limitar_velocidade(double velocidade) const
 }
 
 // diminui a velocidade aos poucos quando nao existe input de movimento
-double player::reduzir_velocidade(double velocidade) const
+double Player::reduzirVelocidade(double velocidade) const
 {
     if (std::abs(velocidade) <= desaceleracao_critica) {
         return 0;
@@ -88,7 +87,7 @@ double player::reduzir_velocidade(double velocidade) const
     return velocidade;
 }
 
-void player::mover(bool esquerda, bool direita, bool cima, bool baixo)
+void Player::mover(bool esquerda, bool direita, bool cima, bool baixo)
 {
     double acc_atual = aceleracao;
 
@@ -107,7 +106,7 @@ void player::mover(bool esquerda, bool direita, bool cima, bool baixo)
     }
 
     if (!esquerda && !direita) {
-        velocidade_x = reduzir_velocidade(velocidade_x);
+        velocidade_x = reduzirVelocidade(velocidade_x);
     }
 
     // depois calcula o movimento vertical
@@ -120,60 +119,60 @@ void player::mover(bool esquerda, bool direita, bool cima, bool baixo)
     }
 
     if (!cima && !baixo) {
-        velocidade_y = reduzir_velocidade(velocidade_y);
+        velocidade_y = reduzirVelocidade(velocidade_y);
     }
 
-    velocidade_x = limitar_velocidade(velocidade_x);
-    velocidade_y = limitar_velocidade(velocidade_y);
+    velocidade_x = limitarVelocidade(velocidade_x);
+    velocidade_y = limitarVelocidade(velocidade_y);
 
     // soma a velocidade na posicao atual do player
     x += int(velocidade_x);
     y += int(velocidade_y);
 }
 
-void player::set_posicao(int novo_x, int novo_y)
+void Player::setPosicao(int novo_x, int novo_y)
 {
     x = novo_x;
     y = novo_y;
 }
 
-int player::get_x() const
+int Player::getX() const
 {
     return x;
 }
 
-int player::get_y() const
+int Player::getY() const
 {
     return y;
 }
 
-void player::set_velocidade(double nova_velocidade_x, double nova_velocidade_y)
+void Player::setVelocidade(double nova_velocidade_x, double nova_velocidade_y)
 {
     velocidade_x = nova_velocidade_x;
     velocidade_y = nova_velocidade_y;
 }
 
-double player::get_velocidade_x() const
+double Player::getVelocidade_x() const
 {
     return velocidade_x;
 }
 
-double player::get_velocidade_y() const
+double Player::getVelocidade_y() const
 {
     return velocidade_y;
 }
 
-void player::set_direcao(int nova_direcao)
+void Player::setDirecao(int nova_direcao)
 {
     direcao = nova_direcao;
 }
 
-int player::get_direcao() const
+int Player::getDirecao() const
 {
     return direcao;
 }
 
-void player::receber_dano(int valor)
+void Player::receberDano(int valor)
 {
     // ao receber dano, ele entra no estado de machucado
     machucado = true;
@@ -184,7 +183,7 @@ void player::receber_dano(int valor)
     }
 }
 
-void player::curar(int valor)
+void Player::curar(int valor)
 {
     vidas += valor;
 
@@ -194,22 +193,22 @@ void player::curar(int valor)
     }
 }
 
-bool player::esta_vivo() const
+bool Player::estaVivo() const
 {
     return vidas > 0;
 }
 
-int player::get_vidas() const
+int Player::getVidas() const
 {
     return vidas;
 }
 
-int player::get_max_vidas() const
+int Player::getMaxVidas() const
 {
     return max_vidas;
 }
 
-void player::ganhar_bandeira(int valor)
+void Player::ganharBandeira(int valor)
 {
     bandeiras += valor;
 
@@ -219,7 +218,7 @@ void player::ganhar_bandeira(int valor)
     }
 }
 
-void player::usar_bandeira(int valor)
+void Player::usarBandeira(int valor)
 {
     bandeiras -= valor;
 
@@ -229,59 +228,59 @@ void player::usar_bandeira(int valor)
     }
 }
 
-int player::get_bandeiras() const
+int Player::getBandeiras() const
 {
     return bandeiras;
 }
 
-int player::get_max_bandeiras() const
+int Player::getMaxBandeiras() const
 {
     return max_bandeiras;
 }
 
-void player::somar_pontos(int valor)
+void Player::somarPontos(int valor)
 {
     // no jogo original a pontuacao usa o multiplicador atual
     pontos += valor * multiplicador;
 }
 
-void player::aumentar_multiplicador()
+void Player::aumentarMultiplicador()
 {
     multiplicador++;
 }
 
-void player::resetar_multiplicador()
+void Player::resetarMultiplicador()
 {
     multiplicador = 1;
 }
 
-int player::get_pontos() const
+int Player::getPontos() const
 {
     return pontos;
 }
 
-int player::get_multiplicador() const
+int Player::getMultiplicador() const
 {
     return multiplicador;
 }
 
-void player::set_cavando(bool valor)
+void Player::setCavando(bool valor)
 {
     cavando = valor;
 }
 
-bool player::esta_cavando() const
+bool Player::estaCavando() const
 {
     return cavando;
 }
 
-void player::acordar()
+void Player::acordar()
 {
     // remove o estado de dano depois que o tempo de atordoamento passa
     machucado = false;
 }
 
-bool player::esta_machucado() const
+bool Player::estaMachucado() const
 {
     return machucado;
 }

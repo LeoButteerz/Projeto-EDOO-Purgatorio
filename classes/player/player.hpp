@@ -1,7 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-class player
+class Player
 {
     private:
         int x;
@@ -25,58 +25,58 @@ class player
         bool cavando;
         bool machucado;
 
-        double limitar_velocidade(double velocidade) const;
-        double reduzir_velocidade(double velocidade) const;
+        double limitarVelocidade(double velocidade) const;
+        double reduzirVelocidade(double velocidade) const;
 
     public:
-        player();
-        player(int vidas_iniciais, int bandeiras_iniciais,
+        Player();
+        Player(int vidas_iniciais, int bandeiras_iniciais,
                double velocidade_max, double acc,
                double dampen, double cdamp);
-        ~player();
+        ~Player();
 
         // movimenta o player usando as quatro direcoes basicas
         void mover(bool esquerda, bool direita, bool cima, bool baixo);
 
         // posicao do player na tela ou no tabuleiro
-        void set_posicao(int novo_x, int novo_y);
-        int get_x() const;
-        int get_y() const;
+        void setPosicao(int novo_x, int novo_y);
+        int getX() const;
+        int getY() const;
 
         // velocidade atual do player
-        void set_velocidade(double nova_velocidade_x, double nova_velocidade_y);
-        double get_velocidade_x() const;
-        double get_velocidade_y() const;
+        void setVelocidade(double nova_velocidade_x, double nova_velocidade_y);
+        double getVelocidade_x() const;
+        double getVelocidade_y() const;
 
         // direcao usada para animacao ou para saber para onde ele esta olhando
-        void set_direcao(int nova_direcao);
-        int get_direcao() const;
+        void setDirecao(int nova_direcao);
+        int getDirecao() const;
 
         // controle de vida
-        void receber_dano(int valor);
+        void receberDano(int valor);
         void curar(int valor);
-        bool esta_vivo() const;
-        int get_vidas() const;
-        int get_max_vidas() const;
+        bool estaVivo() const;
+        int getVidas() const;
+        int getMaxVidas() const;
 
         // controle das bandeiras disponiveis
-        void ganhar_bandeira(int valor);
-        void usar_bandeira(int valor);
-        int get_bandeiras() const;
-        int get_max_bandeiras() const;
+        void ganharBandeira(int valor);
+        void usarBandeira(int valor);
+        int getBandeiras() const;
+        int getMaxBandeiras() const;
 
         // pontuacao do jogador
-        void somar_pontos(int valor);
-        void aumentar_multiplicador();
-        void resetar_multiplicador();
-        int get_pontos() const;
-        int get_multiplicador() const;
+        void somarPontos(int valor);
+        void aumentarMultiplicador();
+        void resetarMultiplicador();
+        int getPontos() const;
+        int getMultiplicador() const;
 
         // estados simples usados durante o jogo
-        void set_cavando(bool valor);
-        bool esta_cavando() const;
+        void setCavando(bool valor);
+        bool estaCavando() const;
         void acordar();
-        bool esta_machucado() const;
+        bool estaMachucado() const;
 };
 
 #endif
